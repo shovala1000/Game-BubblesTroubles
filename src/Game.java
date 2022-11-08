@@ -25,14 +25,14 @@ public class Game extends JFrame implements KeyListener {
     public Game() {
         super();
         bubblesColors = new Color[]{Color.BLUE, Color.GREEN, Color.RED, Color.MAGENTA};
-        level = 3;
+        level = 1;
         score = 0;
         isGameOver = false;
         bubbleSize = 20;
         setTitle(TITLE);
         setVisible(true);
         addKeyListener(this);
-        initGame(bubblesColors[level]);
+        initGame(bubblesColors[level % (bubblesColors.length - 1)]);
     }
 
 
