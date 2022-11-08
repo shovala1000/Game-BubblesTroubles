@@ -1,6 +1,6 @@
 import javax.swing.*;
 
-public abstract class CC extends JPanel implements C {
+public abstract class AbstractLiveAnimation extends JPanel implements LiveAnimation {
     public static final int REFRESH_TIME = 150;
     protected JButton jb;
     protected Timer animationTimer;

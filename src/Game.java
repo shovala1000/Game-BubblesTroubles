@@ -10,7 +10,7 @@ public class Game extends JFrame implements KeyListener {
     private int bubbleSize;
     private int score;
     private int level;
-    private Color[] bubblesColors;
+    private final Color[] bubblesColors;
     public static final int HEIGHT = 400;
     public static final int WIDTH = 650;
     public static final String TITLE = "Bubbles Troubles";
@@ -215,7 +215,7 @@ public class Game extends JFrame implements KeyListener {
         getContentPane().setPreferredSize(new Dimension(WIDTH, HEIGHT));
 
 
-        Shooter temp = new Shooter();
+        Gun temp = new Gun();
         shooter = temp.getJb();
         shooter.setLocation(WIDTH / 2, HEIGHT - 70);
         shooter.setBackground(Color.orange);

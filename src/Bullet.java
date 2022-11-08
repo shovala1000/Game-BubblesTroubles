@@ -1,7 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 
-public class Bullet extends CC {
+public class Bullet extends AbstractLiveAnimation {
     //    private static final int REFRESH_TIME = 150;
 //    private final JButton jb;
     private final int moveSpeedY;

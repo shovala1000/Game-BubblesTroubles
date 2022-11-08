@@ -2,12 +2,12 @@
 import javax.swing.*;
 import java.awt.*;
 
-public class Shooter extends JPanel {
+public class Gun extends JPanel {
     private final String shooterImage = "img/shooter.png";
     private Image shooterImg;
     private final JButton jb;
 
-    public Shooter() {
+    public Gun() {
         Image img = Toolkit.getDefaultToolkit().getImage(getClass().getResource(shooterImage));
         Icon i = new ImageIcon(img);
         jb = new JButton(i);

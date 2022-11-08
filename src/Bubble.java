@@ -3,7 +3,7 @@ import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.Point;
 
-public class Bubble extends CC {
+public class Bubble extends AbstractLiveAnimation {
 //    private static final int REFRESH_TIME = 150;
 //    private final JButton jb;
     private int moveSpeedX, moveSpeedY;
@@ -25,9 +25,7 @@ public class Bubble extends CC {
         jb.setForeground(c);
         jb.setBackground(null);
 
-        animationTimer = new Timer(REFRESH_TIME, e -> {
-            update();
-        });
+        animationTimer = new Timer(REFRESH_TIME, e -> update());
         animationTimer.start();
     }
 

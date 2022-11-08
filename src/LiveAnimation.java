@@ -1,7 +1,6 @@
 import javax.swing.*;
-import java.awt.*;
 
-public interface C {
+public interface LiveAnimation {
     void move();
 
     void update();
