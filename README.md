@@ -16,7 +16,7 @@ Clone this repository and start playing!
 
 ## The game contains 4 levels
 The size of the first bubble is getting bigger as long you move on to the next level, therefore it is getting more difficult.
-The colors of the bubbles and background vary from one level to the next.
+In addition, the colors of the bubbles and background vary from one level to the next.
 
 ## Few Pictures
 ### Starting with level 1
