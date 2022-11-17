@@ -24,7 +24,7 @@ public class Game extends JFrame implements KeyListener {
 
     public Game() {
         super();
-        bubblesColors = new Color[]{Color.BLUE, Color.GREEN, Color.RED, Color.MAGENTA};
+        bubblesColors = new Color[]{Color.BLUE, Color.ORANGE, Color.RED, Color.MAGENTA};
         level = 1;
         score = 0;
         isGameOver = false;
@@ -32,7 +32,7 @@ public class Game extends JFrame implements KeyListener {
         setTitle(TITLE);
         setVisible(true);
         addKeyListener(this);
-        initGame(bubblesColors[level % (bubblesColors.length - 1)]);
+        initGame();
     }
 
 
@@ -158,8 +158,6 @@ public class Game extends JFrame implements KeyListener {
                 }
                 repaint();
             }
-
-
             dispose();
             System.exit(0);
         });
@@ -197,7 +195,7 @@ public class Game extends JFrame implements KeyListener {
             if (selectedOption == JOptionPane.YES_OPTION) {
                 bubbleSize = bubbleSize * 2;
                 ++level;
-                initGame(bubblesColors[level % (bubblesColors.length - 1)]);
+                initGame();
 
             } else if (selectedOption == JOptionPane.NO_OPTION) {
                 isGameOver = true;
@@ -205,20 +203,20 @@ public class Game extends JFrame implements KeyListener {
         }
     }
 
-    private void initGame(Color bubbleColor) {
+    private void initGame() {
         isLost = false;
         SurfaceScore gamePanel = new SurfaceScore(score);
         add(gamePanel);
         gamePanel.setLayout(null);
         setContentPane(gamePanel);
-        getContentPane().setBackground(Color.orange);
+        getContentPane().setBackground(bubblesColors[(level+1) % (bubblesColors.length )]);
         getContentPane().setPreferredSize(new Dimension(WIDTH, HEIGHT));
 
 
         Gun temp = new Gun();
         shooter = temp.getJb();
         shooter.setLocation(WIDTH / 2, HEIGHT - 70);
-        shooter.setBackground(Color.orange);
+        shooter.setBackground(bubblesColors[(level+1) % (bubblesColors.length )]);
 
         getContentPane().add(shooter);
 
@@ -226,7 +224,8 @@ public class Game extends JFrame implements KeyListener {
         bubblesListLen = 1;
         bubblesList = new Bubble[MAX_BUBBLES];
         for (int i = 0; i < bubblesListLen; ++i) {
-            bubblesList[i] = new Bubble((WIDTH + bubbleSize) / 2, 10, bubbleSize, 1, bubbleColor);
+            bubblesList[i] = new Bubble((WIDTH + bubbleSize) / 2, 10, bubbleSize, 1,
+                    bubblesColors[level % (bubblesColors.length )]);
             getContentPane().add(bubblesList[i].getJb());
         }
 
@@ -247,7 +246,7 @@ public class Game extends JFrame implements KeyListener {
             int x = (int) bubblesList[bubbleIndex].getJb().getLocation().getX(), y = (int) bubblesList[bubbleIndex].getJb().getLocation().getY();
 
 
-            Color color = bubblesColors[level % (bubblesColors.length - 1)];
+            Color color = bubblesColors[level % (bubblesColors.length )];
             Bubble b1 = new Bubble(x + width / 2, y, width / 2, 1, color);
             Bubble b2 = new Bubble(x, y, width / 2, -1, color);
 

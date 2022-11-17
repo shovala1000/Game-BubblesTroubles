@@ -12,9 +12,11 @@ public class Gun extends JPanel {
         Icon i = new ImageIcon(img);
         jb = new JButton(i);
         jb.setSize(20, 70);
-        jb.setForeground(Color.orange);
-        jb.setBackground(Color.orange);
         setImages();
+
+        jb.setOpaque(false);
+        jb.setFocusPainted(false);
+        jb.setBorderPainted(false);
     }
 
     //draw
@@ -28,7 +30,7 @@ public class Gun extends JPanel {
     private void setImages() {
         shooterImg = Toolkit.getDefaultToolkit().getImage(getClass().getResource(shooterImage));
         while (shooterImg.getHeight(null) == -1)
-            System.out.println("class Canon: Waiting for image height...");
+            System.out.println("class Gun: Waiting for image height...");
 
     }
 

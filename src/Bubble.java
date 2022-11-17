@@ -1,17 +1,11 @@
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.Point;
 
 public class Bubble extends AbstractLiveAnimation {
-//    private static final int REFRESH_TIME = 150;
-//    private final JButton jb;
     private int moveSpeedX, moveSpeedY;
-//    private final Timer animationTimer;
     public boolean isHit;
     public boolean isDead;
-
-
 
     public Bubble(int x, int y, int size, int dir, Color c) {
         super();
@@ -19,11 +13,7 @@ public class Bubble extends AbstractLiveAnimation {
         moveSpeedX = 5 * dir;
         moveSpeedY = 5;
         isHit = false;
-        super.jb = new JButton();
-        jb.setBorder(new RoundedBorder());
-        jb.setBounds(x, y, size, size);
-        jb.setForeground(c);
-        jb.setBackground(null);
+        super.jb = new CircleButton(x, y, size / 2, c);
 
         animationTimer = new Timer(REFRESH_TIME, e -> update());
         animationTimer.start();
@@ -44,67 +34,57 @@ public class Bubble extends AbstractLiveAnimation {
         }
 
     }
+
     @Override
     public void update() {
-        if (!isDead) {
-            if (collides(jb, Game.shooter)) {
-                isHit = true;
-                Game.isLost = true;
-            }
-            move();
-            repaint();
-        } else animationTimer.stop();
+        Thread t = new Thread(()->{
+            if (!isDead) {
+                int shooterWidth = Game.shooter.getWidth(), shooterHeight = Game.shooter.getHeight() / 2;
+                JButton upGun = new JButton();
+                JButton downGun = new JButton();
+                upGun.setSize(new Dimension(shooterWidth / 2, shooterHeight));
+                upGun.setLocation(Game.shooter.getLocation());
+                downGun.setSize(new Dimension(shooterWidth, shooterHeight));
+                downGun.setLocation((int) Game.shooter.getLocation().getX(),
+                        (int) Game.shooter.getLocation().getY() + shooterHeight);
+                if (collides(jb,upGun )||collides(jb,downGun)) {
+                    isHit = true;
+                    Game.isLost = true;
+                }
+                move();
+                repaint();
+            } else animationTimer.stop();
+        });
+        t.start();
 
     }
-
-//    private boolean collides(JButton circle, JButton rectangle) {
-//        double temp, val1, val2;
-//        // (x-a)^2 +(y-b)^2 = r^2
-//        int r = circle.getWidth() / 2;
-//        int a = circle.getLocation().x + circle.getWidth() / 2;
-//        int b = circle.getLocation().y + circle.getWidth() / 2;
-//        //rectangle ABCD: A(x1,y1) B(x2,y1) C(x2,y2) D(x1,y2)
-//        int x1 = rectangle.getX(), y1 = rectangle.getY();
-//        int x2 = x1 + rectangle.getWidth(), y2 = y1 + rectangle.getHeight();
-//        //x = x1
-//        temp = Math.sqrt(r * r - (x1 - a) * (x1 - a));
-//        val1 = temp + b;
-//        val2 = -temp + b;
-//        if ((y1 <= val1 && val1 <= y2) || (y1 <= val2 && val2 <= y2)) {
-//            return true;
-//        }
-//        //x = x2
-//        temp = Math.sqrt(r * r - (x2 - a) * (x2 - a));
-//        val1 = temp + b;
-//        val2 = -temp + b;
-//        if ((y1 <= val1 && val1 <= y2) || (y1 <= val2 && val2 <= y2)) {
-//            return true;
-//        }
-//        // y=y1
-//        temp = Math.sqrt(r * r - (y1 - b) * (y1 - b));
-//        val1 = temp + a;
-//        val2 = -temp + a;
-//        return (x1 <= val1 && val1 <= x2) || (x1 <= val2 && val2 <= x2);
-//    }
 
     public JButton getJb() {
         return jb;
     }
 
-    private static class RoundedBorder implements Border {
+    private static class CircleButton extends JButton {
+        private final int radius;
+        private final Color color;
 
-
-        public Insets getBorderInsets(Component c) {
-            return new Insets(0, 0, 0, 0);
+        public CircleButton(int x, int y, int radius, Color c) {
+            super();
+            this.radius = radius;
+            this.color = c;
+            int size = radius * 2;
+            setBounds(x, y, size, size);
+            setOpaque(false);
+            setFocusPainted(false);
+            setBorderPainted(false);
         }
 
-        public boolean isBorderOpaque() {
-            return true;
-        }
-
-        public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
-            g.fillOval(x, y, width - 1, height - 1);
+        @Override
+        public void paintComponent(Graphics g) {
+            short epsi = 1;
+            int size = radius * 2 - epsi;
+            g.setColor(color);
+            g.drawOval(getWidth() / 2 - radius, getHeight() / 2 - radius, size, size);
+            g.fillOval(getWidth() / 2 - radius, getHeight() / 2 - radius, size, size);
         }
     }
-
 }
