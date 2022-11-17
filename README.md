@@ -19,13 +19,14 @@ the size of the bubble is getting bigger as long you move on to the next level, 
 
 ## Few Pictures
 ### Starting with level 1
-<img width="487" alt="Capture1" src="https://user-images.githubusercontent.com/92690592/200614096-92478aba-23d7-407f-8806-f0f84f793ef4.PNG">
+<img width="487" alt="Capture1" src="https://user-images.githubusercontent.com/92690592/202531666-3ede15a2-3a8b-4367-898c-452e94b0e242.PNG">
 
 ### Won level 2 
-<img width="487" alt="Capture2" src="https://user-images.githubusercontent.com/92690592/200614330-010ff509-7fcd-4431-9ea3-3980262e275b.PNG">
+<img width="488" alt="Capture2" src="https://user-images.githubusercontent.com/92690592/202532214-09343347-32da-414c-bb83-f6581f9c2c43.PNG">
 
 ### Playing 
-<img width="487" alt="Capture3" src="https://user-images.githubusercontent.com/92690592/200614336-df2ee954-cd8b-4459-96cb-a7d94e8efb67.PNG">
+<img width="486" alt="Capture3" src="https://user-images.githubusercontent.com/92690592/202532231-f6201dbe-645a-458d-b628-aa6d679918bd.PNG">
 
 ### Losing 
-<img width="488" alt="Capture4" src="https://user-images.githubusercontent.com/92690592/200614368-58285b17-7e19-4d9b-8a98-85c13f772be9.PNG">
+<img width="488" alt="Capture4" src="https://user-images.githubusercontent.com/92690592/202533311-907280bf-51d9-4571-a301-c96e85a014c0.PNG">
+
